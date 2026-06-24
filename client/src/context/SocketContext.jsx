@@ -11,7 +11,7 @@ export const SocketProvider = ({ children }) => {
   useEffect(() => {
     // Connect directly to port 5001 in dev mode, otherwise use origin
     const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-    const socketUrl = isLocalhost ? 'http://localhost:5001' : window.location.origin;
+    const socketUrl = import.meta.env.VITE_API_URL || (isLocalhost ? 'http://localhost:5001' : window.location.origin);
 
     const socketInstance = io(socketUrl, {
       autoConnect: true,
